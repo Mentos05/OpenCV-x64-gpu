@@ -1,1 +1,1 @@
-Download prebuilt .deb files here: [LINK](https://drive.google.com/drive/folders/19hIwWlsmRjnvlT-fwg1GR7vxkBJInCSp?usp=sharing)
+Download prebuilt .deb files here: [LINK](https://docs.google.com/uc?export=download&id=YourIndividualID)
