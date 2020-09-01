@@ -1,1 +1,1 @@
-wget https://docs.google.com/uc?export=download&id=ID
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1d3nBphQxZtQAx0lxlF7BgN146JR2n4PX' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1d3nBphQxZtQAx0lxlF7BgN146JR2n4PX" -O OpenCV-4.3.0-x86_64-centos7.zip && rm -rf /tmp/cookies.txt
