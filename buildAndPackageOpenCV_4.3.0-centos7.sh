@@ -9,7 +9,7 @@ OPENCV_SOURCE_DIR=$HOME
 
 # Install required packages
 echo "NOTE: Installing required packages."
-yum -y install epel-release
+yum -y update && yum -y install epel-release
 yum -y install git \
                gcc \
                gcc-c++ \
@@ -40,7 +40,8 @@ yum -y install git \
                libv4l-devel \
                make \
                openblas-devel \
-               libcanberra-gtk3
+               libcanberra-gtk3 \
+               rpm-build
 yum -y install gstreamer1-devel \
                gstreamer1-plugins-base-devel \
                gstreamer1-plugins-good-devel \
@@ -85,7 +86,6 @@ time cmake3 -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_GSTREAMER_0_10=OFF \
       -D WITH_QT=ON \
       -D WITH_OPENGL=ON \
-      -D CPACK_BINARY_DEB=ON \
       -D WITH_CUDNN=ON \
       -D OPENCV_DNN_CUDA=ON \
       -D ENABLE_FAST_MATH=ON \
@@ -95,10 +95,17 @@ time cmake3 -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_PERF_TESTS=OFF \
       -D BUILD_TESTS=OFF \
       -D CUDNN_VERSION=7.6.5 \
-      -D CUDNN_INCLUDE_DIR=/usr/local/cuda-10.2/targets/x86_64-linux/include/ \
-      -D CUDNN_LIBRARY=/usr/local/cuda-10.2/targets/x86_64-linux/lib/libcudnn.so.7 \
+      -D CUDNN_INCLUDE_DIR=/usr/include \
+      -D CUDNN_LIBRARY=/usr/lib64/libcudnn.so \
       -D OPENCV_EXTRA_MODULES_PATH=/root/opencv_contrib/modules \
       -D OPENCV_ENABLE_NONFREE=ON \
+      -D CPACK_BINARY_DEB=OFF \
+      -D CPACK_BINARY_NSIS=OFF \
+      -D CPACK_BINARY_RPM=ON \
+      -D CPACK_BINARY_STGZ=OFF \
+      -D CPACK_BINARY_TBZ2=OFF \
+      -D CPACK_BINARY_TGZ=OFF \
+      -D CPACK_BINARY_TZ=OFF \
       ../
 
 if [ $? -eq 0 ] ; then
@@ -178,6 +185,6 @@ fi
 
 # Copy OpenCV files to host
 if [[ $IMPORT_CHECK == *$OPENCV_VERSION* ]]; then
-  cp /root/opencv/build/OpenCV-${OPENCV_VERSION}* /hostdata/opencv-centos7-x64-deb/
-  echo "NOTE: OpenCV Package Files copied to opencv-centos7-x64-deb folder"
+  cp /root/opencv/build/OpenCV-${OPENCV_VERSION}* /hostdata/opencv-centos7-x64-rpm/
+  echo "NOTE: OpenCV Package Files copied to opencv-centos7-x64-rpm folder"
 fi

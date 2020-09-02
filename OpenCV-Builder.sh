@@ -56,7 +56,7 @@ done
 echo "NOTE: Start building and packaging OpenCV."
 # Centos 7 Building
 if [ $base_os="centos7" ]; then
-   mkdir $PWD/opencv-centos7-x64-deb
+   mkdir $PWD/opencv-centos7-x64-rpm
    sudo docker run -it --rm --net=host --gpus all --runtime=nvidia -v $(pwd):/hostdata $base_image /bin/bash -C '/hostdata/buildAndPackageOpenCV_4.3.0-centos7.sh'
 fi
 # Ubuntu Building
