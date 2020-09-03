@@ -15,15 +15,13 @@ yum -y install git \
                gcc-c++ \
                cmake3 \
                file \
-               dpkg-dev \
-               dpkg-devel \
-               qt5-qtbase-devel \
+               gtk3-devel \
+               libcanberra-gtk3 \
                python3 \
                python3-devel \
                python3-pip \
                python3-numpy \
                cmake \
-               gtk2-devel \
                libpng-devel \
                jasper-devel \
                openexr-devel \
@@ -34,18 +32,14 @@ yum -y install git \
                tbb-devel numpy \
                eigen3-devel \
                freeglut-devel \
-               mesa-libGL \
                jansson \
-               mesa-libGL-devel \
                libv4l-devel \
                make \
                openblas-devel \
-               libcanberra-gtk3 \
                rpm-build
 yum -y install gstreamer1-devel \
                gstreamer1-plugins-base-devel \
-               gstreamer1-plugins-good-devel \
-               gstreamer1-plugins-bad-devel
+               gstreamer1-plugins-good
 yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 yum -y install ffmpeg \
                ffmpeg-devel
@@ -73,32 +67,34 @@ cd $OPENCV_SOURCE_DIR/opencv
 mkdir build
 cd build
 
-time cmake3 -D CMAKE_BUILD_TYPE=RELEASE \
+time cmake3 \
+      -D CMAKE_BUILD_TYPE=RELEASE \
+      -D BUILD_opencv_world=OFF \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D WITH_CUDA=ON \
       -D CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
-      -D CUDA_ARCH_PTX="" \
       -D ENABLE_FAST_MATH=ON \
       -D CUDA_FAST_MATH=ON \
       -D WITH_CUBLAS=ON \
       -D WITH_LIBV4L=ON \
       -D WITH_GSTREAMER=ON \
       -D WITH_GSTREAMER_0_10=OFF \
-      -D WITH_QT=ON \
-      -D WITH_OPENGL=ON \
+      -D WITH_FFMPEG=ON \
+      -D WITH_QT=OFF \
+      -D WITH_GTK=ON \
+      -D WITH_OPENGL=OFF \
       -D WITH_CUDNN=ON \
       -D OPENCV_DNN_CUDA=ON \
       -D ENABLE_FAST_MATH=ON \
       -D WITH_CUBLAS=ON \
       -D BUILD_opencv_python3=ON \
-      -D WITH_FFMPEG=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=/root/opencv_contrib/modules \
+      -D OPENCV_ENABLE_NONFREE=ON \
       -D BUILD_PERF_TESTS=OFF \
       -D BUILD_TESTS=OFF \
       -D CUDNN_VERSION=7.6.5 \
       -D CUDNN_INCLUDE_DIR=/usr/include \
       -D CUDNN_LIBRARY=/usr/lib64/libcudnn.so \
-      -D OPENCV_EXTRA_MODULES_PATH=/root/opencv_contrib/modules \
-      -D OPENCV_ENABLE_NONFREE=ON \
       -D CPACK_BINARY_DEB=OFF \
       -D CPACK_BINARY_NSIS=OFF \
       -D CPACK_BINARY_RPM=ON \
