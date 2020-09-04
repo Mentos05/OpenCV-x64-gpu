@@ -35,10 +35,9 @@ bash OpenCV-Builder.sh --base_image=opencv_version
 | Variable | Description | Default |
 | ------ | ------ | ------ |
 | base_image | Base image to use | nvidia/cuda:10.2-cudnn7-devel-centos7 |
-| base_os | OS of base image | centos |
 | opencv_version | OpenCV version to build | 4.4.0 |
 
-Note: The script was tested with default values. Other images and/or OpenCV versions might not work.
+Note: The script was tested with default values. Other RHEL based images and/or OpenCV versions might work.
 
 ### OpenCV Build Information
 
