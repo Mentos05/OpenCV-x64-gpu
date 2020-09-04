@@ -12,7 +12,7 @@ CUDA, CUDNN, GStreamer, FFMPEG, Nonfree-stuff, Python-Support, etc. is enabled. 
 * [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)
 
 ### How To
-1. Clone this repository
+1. Clone this repository.
 ```
 git clone https://github.com/Mentos05/OpenCV-x64-gpu
 ```
@@ -20,7 +20,7 @@ git clone https://github.com/Mentos05/OpenCV-x64-gpu
 ```
 bash OpenCV-Builder.sh
 ```
-3. Install your package files with yum install -f on host or in other containers
+3. Install your package files on host or in other containers.
 ```
 yum install opencv-centos7-x64-rpm/*.rpm
 ```
