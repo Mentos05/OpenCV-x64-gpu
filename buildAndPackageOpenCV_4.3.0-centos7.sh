@@ -3,13 +3,13 @@
 # Build OpenCV 4.3.0 on NVIDIA Docker image: nvidia/cuda:10.2-cudnn7-devel-centos7
 # Copyright(c) Michael Gorkow (2020)
 
-OPENCV_VERSION=4.3.0
+OPENCV_VERSION=4.4.0
 DOWNLOAD_OPENCV_CONTRIB=YES
 OPENCV_SOURCE_DIR=$HOME
 
 # Install required packages
 echo "NOTE: Installing required packages."
-yum -y update && yum -y install epel-release
+yum -y install epel-release
 yum -y install git \
                gcc \
                gcc-c++ \

@@ -12,10 +12,6 @@ CUDA, CUDNN, GStreamer, FFMPEG, Nonfree-stuff, Python-Support, etc. is enabled. 
 * [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)
 
 ### How To
-0. If you already have a version of the base image (nvidia/cuda:10.2-cudnn7-devel-centos7) make sure to update it.
-```
-git pull nvidia/cuda:10.2-cudnn7-devel-centos7
-```
 1. Clone this repository
 ```
 git clone https://github.com/Mentos05/OpenCV-x64-gpu
