@@ -1,6 +1,5 @@
 # Default variables
 BASE_IMAGE="nvidia/cuda:10.2-cudnn7-devel-centos7"
-BASE_OS="centos7"
 OPENCV_VERSION="4.4.0"
 OTHER_ARGUMENTS=()
 
@@ -10,10 +9,6 @@ do
     case $arg in
         -bi*|--base_image*)
         BASE_IMAGE="${arg#*=}"
-        shift
-        ;;
-        -bos*|--base_os*)
-        BASE_OS="${arg#*=}"
         shift
         ;;
         -ocv*|--opencv_version*)
@@ -43,9 +38,6 @@ printf '##### %-88s #####\n'
 printf '##### %-88s #####\n' "Base Image:"
 printf '##### %-88s #####\n' "$BASE_IMAGE"
 printf '##### %-88s #####\n'
-printf '##### %-88s #####\n' "Base Image OS:"
-printf '##### %-88s #####\n' "$BASE_OS"
-printf '##### %-88s #####\n'
 printf '#%.0s' {1..100}; printf '\n';
 
 while true; do
@@ -59,18 +51,9 @@ done
 
 # Pulling / Updating base image
 echo "NOTE: Pulling/Updating $BASE_IMAGE"
-sudo docker pull $base_image
+sudo docker pull $BASE_IMAGE
 
 # Start OpenCV Building and Packaging inside Docker container
 echo "NOTE: Start building and packaging OpenCV."
-# Centos 7 Building
-if [ $BASE_OS == "centos7" ]; then
-   mkdir $PWD/opencv-centos7-x64-rpm
-   sudo docker run -it --rm --net=host --gpus all --runtime=nvidia -v $(pwd):/hostdata $BASE_IMAGE /bin/bash -C "/hostdata/buildAndPackageOpenCV-centos7.sh --opencv_version=$OPENCV_VERSION"
-fi
-
-# Ubuntu Building - to be done...
-if [ $BASE_OS == "ubuntu" ]; then
-   mkdir $PWD/opencv-ubuntu-x64-deb
-   sudo docker run -it --rm --net=host --gpus all --runtime=nvidia -v $(pwd):/hostdata $BASE_IMAGE /bin/bash -C "/hostdata/buildAndPackageOpenCV-ubuntu.sh --opencv_version=$OPENCV_VERSION"
-echo "NOTE: Building and packaging OpenCV finished."
+mkdir $PWD/opencv-centos7-x64-rpm
+sudo docker run -it --rm --net=host --gpus all --runtime=nvidia -v $(pwd):/hostdata $BASE_IMAGE /bin/bash -C "/hostdata/buildAndPackageOpenCV-centos7.sh --opencv_version=$OPENCV_VERSION"
