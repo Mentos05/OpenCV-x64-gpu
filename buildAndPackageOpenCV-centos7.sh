@@ -1,11 +1,27 @@
 #!/bin/bash
 # License: MIT. See license file in root directory
-# Build OpenCV 4.3.0 on NVIDIA Docker image: nvidia/cuda:10.2-cudnn7-devel-centos7
+# Build OpenCV 4.4.0 on NVIDIA Docker image: nvidia/cuda:10.2-cudnn7-devel-centos7
 # Copyright(c) Michael Gorkow (2020)
 
+# Default variables
 OPENCV_VERSION=4.4.0
 DOWNLOAD_OPENCV_CONTRIB=YES
 OPENCV_SOURCE_DIR=$HOME
+
+# User provided variables
+for arg in "$@"
+do
+    case $arg in
+        -ocv*|--opencv_version*)
+        OPENCV_VERSION="${arg#*=}"
+        shift
+        ;;
+        *)
+        OTHER_ARGUMENTS+=("$1")
+        shift # Remove generic argument from processing
+        ;;
+    esac
+done
 
 # Install required packages
 echo "NOTE: Installing required packages."

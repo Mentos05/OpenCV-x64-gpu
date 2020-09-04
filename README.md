@@ -1,5 +1,5 @@
-# Building & Packaging OpenCV 4.3.0 on Centos 7 
-This project allows you to build and package OpenCV 4.3.0 inside the nvidia/cuda:10.2-cudnn7-devel-centos7 container from NVIDIA.
+# Building & Packaging OpenCV 4.4.0 on Centos 7 
+This project allows you to build and package OpenCV 4.4.0 inside the nvidia/cuda:10.2-cudnn7-devel-centos7 container from NVIDIA.
 Afterwards you'll have the package files on the host machine for quick deployment in other containers rather than building it again and again.
 Benefit: Fast OpenCV deployment and small container sizes.
 
@@ -16,16 +16,32 @@ CUDA, CUDNN, GStreamer, FFMPEG, Nonfree-stuff, Python-Support, etc. is enabled. 
 ```
 git clone https://github.com/Mentos05/OpenCV-x64-gpu
 ```
-2. Run "OpenCV-Builder.sh"
+2. Run "OpenCV-Builder.sh". Package files will be located in "opencv-centos7-x64-rpm" folder.
 ```
 bash OpenCV-Builder.sh
 ```
-3. Find the package files in "opencv-centos7-x64-deb"
-4. Install your package files with yum install -f on host or in other containers
+3. Install your package files with yum install -f on host or in other containers
+```
+yum install opencv-centos7-x64-rpm/*.rpm
+```
 
-Make sure you are running your containers with the nvidia runtime.
+The OpenCV-Builder.sh script accepts user variables.<br>
+Append them to OpenCV-Builder.sh with --variable=value<br>
+Example:<br>
+```
+bash OpenCV-Builder.sh --base_image=opencv_version
+```
 
-### OpenCV Build Information Centos7
+| Variable | Description | Default |
+| ------ | ------ | ------ |
+| base_image | Base image to use | nvidia/cuda:10.2-cudnn7-devel-centos7 |
+| base_os | OS of base image | centos |
+| opencv_version | OpenCV version to build | 4.4.0 |
+
+Note: The script was tested with default values. Other images and/or OpenCV versions might not work.
+
+### OpenCV Build Information
+
 
 ### Contact
 If you like to discuss how computer vision can be applied to your problems, you're of course free to contact me.<br>
