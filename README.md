@@ -29,7 +29,7 @@ The OpenCV-Builder.sh script accepts user variables.<br>
 Append them to OpenCV-Builder.sh with --variable=value<br>
 Example:<br>
 ```
-bash OpenCV-Builder.sh --base_image=opencv_version
+bash OpenCV-Builder.sh --opencv_version==4.4.0
 ```
 
 | Variable | Description | Default |
@@ -37,7 +37,7 @@ bash OpenCV-Builder.sh --base_image=opencv_version
 | base_image | Base image to use | nvidia/cuda:10.2-cudnn7-devel-centos7 |
 | opencv_version | OpenCV version to build | 4.4.0 |
 
-Note: The script was tested with default values. Other RHEL based images and/or OpenCV versions might work.
+Note: The script was tested with default values. Other RHEL based images (shipped with CUDA, CUDNN, etc.) and/or OpenCV versions might work.
 
 ### OpenCV Build Information
 
